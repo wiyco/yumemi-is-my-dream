@@ -37,6 +37,7 @@ export function Modal({
 
   return (
     <div
+      data-testid="modal-root"
       className={cn(
         "modal-root",
         isModalOpen ? "visible opacity-100" : "invisible opacity-0"
@@ -48,7 +49,10 @@ export function Modal({
       <div className={cn("modal-wrap", isModalOpen ? "scale-100" : "scale-0")}>
         <section className="modal-header">
           <span>{header}</span>
-          <button onClick={() => setIsModalOpen((prev) => !prev)}>
+          <button
+            data-testid="modal-close"
+            onClick={() => setIsModalOpen((prev) => !prev)}
+          >
             <Xmark />
           </button>
         </section>
