@@ -10,4 +10,18 @@ type ReasasPrefecturesResponse = ResasBaseResponse<
   }[]
 >;
 
-export type { ReasasPrefecturesResponse };
+type ReasasPopulationCompositionPerYearResponse = ResasBaseResponse<{
+  boundaryYear: number;
+  data: {
+    label: string;
+    data: {
+      year: number;
+      value: number;
+    }[];
+  }[];
+}>;
+
+export type {
+  ReasasPopulationCompositionPerYearResponse,
+  ReasasPrefecturesResponse,
+};
