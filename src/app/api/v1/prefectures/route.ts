@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import type { ReasasPrefecturesResponse } from "@/types/resas";
 
 export async function GET() {
+  /** @see {@link https://opendata.resas-portal.go.jp/docs/api/v1/prefectures.html} */
   const data = (await fetch(
     "https://opendata.resas-portal.go.jp/api/v1/prefectures",
     {
