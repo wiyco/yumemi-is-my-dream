@@ -7,8 +7,25 @@ import { atom, useAtom } from "jotai";
 
 import { cn } from "@/utils/cn";
 
+/**
+ * Jotai atom for modal state.
+ * ```tsx
+ * const [isModalOpen, setIsModalOpen] = useAtom(modalAtom);
+ * ```
+ */
 export const modalAtom = atom(false);
 
+/**
+ * Modal (Dialog) component.
+ * ```tsx
+ * <Modal header="String or Element">
+ *  <p>Children content</p>
+ * </Modal>
+ * ```
+ * Use `modalAtom` to open and close the modal.
+ * @param header - Header content
+ * @param children - Children content
+ */
 export function Modal({
   children,
   header,
