@@ -39,7 +39,7 @@ export function Modal({
     <div
       className={cn(
         "modal-root",
-        isModalOpen ? "grid opacity-100" : "hidden opacity-0"
+        isModalOpen ? "visible opacity-100" : "invisible opacity-0"
       )}
       onClick={(e) =>
         e.target === e.currentTarget && setIsModalOpen((prev) => !prev)

@@ -1,19 +1,20 @@
 @use "@styles/animations" as animations;
 
 .modal-root {
-  @apply fixed inset-0 z-50 
+  @apply fixed inset-0
+    z-50 grid 
     h-dvh w-screen
     place-content-center
     bg-black/50;
 
-  transition: opacity 0.3s animations.$ease-in-out-quint;
+  transition: all 0.3s animations.$ease-in-out-quint;
 
   & > .modal-wrap {
     @apply grid h-fit w-fit gap-5
       rounded-lg bg-neutral-100 px-4 py-4
       text-neutral-800;
 
-    transition: transform 0.3s animations.$ease-in-out-quint;
+    transition: all 0.3s animations.$ease-in-out-quint;
   }
 
   & .modal-header {
