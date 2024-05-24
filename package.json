@@ -19,7 +19,11 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11",
+    "@emotion/styled": "^11.11",
     "@hookform/resolvers": "^3",
+    "@mui/material": "^5.15",
+    "@mui/x-charts": "^7.5",
     "@nextui-org/react": "^2.3",
     "clsx": "^2",
     "framer-motion": "^11.2",
