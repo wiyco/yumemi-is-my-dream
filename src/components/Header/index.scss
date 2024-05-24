@@ -1,0 +1,11 @@
+.header-root {
+  @apply fixed inset-x-0 top-0 z-40
+    min-h-14 w-full
+    bg-opacity-40
+    px-6 py-4
+    shadow backdrop-blur-md;
+
+  & > h1 {
+    @apply text-2xl font-semibold;
+  }
+}

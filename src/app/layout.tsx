@@ -2,6 +2,8 @@ import "@styles/globals.scss";
 
 import type { Metadata } from "next";
 
+import { Header } from "@/components/Header";
+
 import { Provider } from "./provider";
 
 export const metadata: Metadata = {
@@ -26,6 +28,9 @@ export default function RootLayout({
             disableTransitionOnChange: true,
           }}
         >
+          <Header className="grid place-content-center">
+            Yumemi Front Exam
+          </Header>
           {children}
         </Provider>
       </body>
