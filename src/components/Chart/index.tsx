@@ -7,17 +7,24 @@ type ChartProps = {
   xAxis?: React.ComponentProps<typeof LineChart>["xAxis"];
   yAxis?: React.ComponentProps<typeof LineChart>["yAxis"];
   series: React.ComponentProps<typeof LineChart>["series"];
+  height?: React.ComponentProps<typeof LineChart>["height"];
 };
 
-export function Chart({ title, xAxis, yAxis, series }: ChartProps) {
+export function Chart({
+  title,
+  xAxis,
+  yAxis,
+  series,
+  height = 400,
+}: ChartProps) {
   return (
     <LineChart
       title={title}
       xAxis={xAxis}
       yAxis={yAxis}
       series={series}
-      height={360}
-      margin={{ left: 66, right: 32, top: 48, bottom: 32 }}
+      height={height}
+      margin={{ left: 72, right: 32, top: 48, bottom: 32 }}
       grid={{ vertical: true, horizontal: true }}
       sx={{
         "& .css-1f57y8b": {
