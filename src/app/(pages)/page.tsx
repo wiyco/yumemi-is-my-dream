@@ -62,6 +62,9 @@ export default function Page() {
             xAxis={[
               {
                 data: populationChartData[0]?.years,
+                valueFormatter: (value) => value.toString(),
+                min: Math.min(...(populationChartData[0]?.years ?? [])),
+                max: Math.max(...(populationChartData[0]?.years ?? [])),
               },
             ]}
             series={populationChartData.map(({ pref, populations }) => ({
