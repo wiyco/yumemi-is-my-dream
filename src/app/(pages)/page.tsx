@@ -21,24 +21,21 @@ type Populations = {
 export default function Page() {
   const [, setIsModalOpen] = useAtom(modalAtom);
 
-  const [newPref, setNewPref] = useState<{ code: number; name: string } | null>(
-    null
-  );
+  const [newPref, setNewPref] = useState<Populations["pref"] | null>(null);
 
   const [populations, setPopulations] = useState<Populations[]>([]);
 
   useEffect(() => {
-    if (newPref?.code) {
-      fetch(`/api/v1/population/composition/years?pref=${newPref.code}`)
+    if (newPref?.prefCode) {
+      fetch(`/api/v1/population/composition/years?pref=${newPref.prefCode}`)
         .then((res) => res.json())
         .then((data: ReasasPopulationCompositionPerYearResponse) => {
-          console.log(data);
           setPopulations((prev) => [
             ...prev,
             {
               pref: {
-                prefCode: newPref.code,
-                prefName: newPref.name,
+                prefCode: newPref.prefCode,
+                prefName: newPref.prefName,
               },
               data: data.result.data[0].data, // 総人口
             },
@@ -88,7 +85,7 @@ export default function Page() {
           </button>
         </section>
       </main>
-      <Modal header="Prefectures">
+      <Modal header="都道府県の選択">
         <ul className="grid grid-cols-3 gap-4 md:grid-cols-5">
           {data?.result.map(({ prefCode, prefName }) => (
             <li key={prefCode} className="flex items-center gap-1.5">
@@ -99,8 +96,8 @@ export default function Page() {
                 onChange={(e) => {
                   if (e.target.checked) {
                     setNewPref({
-                      code: prefCode,
-                      name: prefName,
+                      prefCode: prefCode,
+                      prefName: prefName,
                     });
                   } else {
                     setPopulations((prev) =>
