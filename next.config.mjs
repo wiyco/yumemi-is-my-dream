@@ -10,8 +10,6 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
-  /** For GitHub Pages */
-  output: "export",
 };
 
 export default nextConfig;
