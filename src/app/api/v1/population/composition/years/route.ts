@@ -2,6 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import type { ReasasPopulationCompositionPerYearResponse } from "@/types/resas";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   /** @note prefCode */
   const pref = parseInt(request.nextUrl.searchParams.get("pref") ?? "");
