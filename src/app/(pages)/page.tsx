@@ -1,24 +1,54 @@
 "use client";
 
-import { Code } from "@nextui-org/react";
-import { motion } from "framer-motion";
-import { Ballet } from "next/font/google";
-import { useSearchParams } from "next/navigation";
+import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 
+import { Chart } from "@/components/Chart";
 import { FullScreen } from "@/components/FullScreen";
+import { Modal, modalAtom } from "@/components/Modal";
 import { fetcher } from "@/lib/swr";
-import { cn } from "@/utils/cn";
+import type {
+  ReasasPopulationCompositionPerYearResponse,
+  ReasasPrefecturesResponse,
+} from "@/types/resas";
 
-const ballet = Ballet({
-  subsets: ["latin"],
-  display: "swap",
-});
+type Populations = {
+  pref: ReasasPrefecturesResponse["result"][0];
+  data: ReasasPopulationCompositionPerYearResponse["result"]["data"][0]["data"];
+};
 
 export default function Page() {
-  const searchParams = useSearchParams();
-  const { data, error, isLoading } = useSWR<{ message: string; t: string }>(
-    `/api?t=${searchParams.get("t") ?? ""}`,
+  const [, setIsModalOpen] = useAtom(modalAtom);
+
+  const [newPref, setNewPref] = useState<{ code: number; name: string } | null>(
+    null
+  );
+
+  const [populations, setPopulations] = useState<Populations[]>([]);
+
+  useEffect(() => {
+    if (newPref?.code) {
+      fetch(`/api/v1/population/composition/years?pref=${newPref.code}`)
+        .then((res) => res.json())
+        .then((data: ReasasPopulationCompositionPerYearResponse) => {
+          console.log(data);
+          setPopulations((prev) => [
+            ...prev,
+            {
+              pref: {
+                prefCode: newPref.code,
+                prefName: newPref.name,
+              },
+              data: data.result.data[0].data, // 総人口
+            },
+          ]);
+        });
+    }
+  }, [newPref]);
+
+  const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
+    "/api/v1/prefectures",
     fetcher
   );
 
@@ -36,30 +66,55 @@ export default function Page() {
     );
 
   return (
-    <main className="grid h-full min-h-dvh w-full place-content-center gap-9 p-6 text-neutral-800 dark:text-neutral-300">
-      <h1 className={cn(ballet.className, "text-center text-5xl")}>
-        Hello, World!
-      </h1>
-      <section className="grid place-content-center gap-6 text-center">
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          {`'${data?.message}' from api!`}
-        </motion.p>
-        <motion.div
-          className="grid place-content-center gap-3"
-          initial={{ rotateX: 180 }}
-          animate={{ rotateX: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <h2 className="text-xl">{`Sleep time is ${data?.t}ms!`}</h2>
-          <p>
-            If you want to specify the sleep time of api, please specify the
-            parameter in the URL!
-          </p>
-          <p>
-            Example: <Code size="sm">?t=1000</Code>
-          </p>
-        </motion.div>
-      </section>
-    </main>
+    <>
+      <main className="grid h-dvh w-full content-around p-6">
+        <Chart
+          xAxis={[
+            {
+              data: populations[0]?.data.map(({ year }) => year),
+            },
+          ]}
+          series={populations.map(({ pref, data }) => ({
+            data: data.map(({ value }) => value),
+            label: pref.prefName,
+          }))}
+        />
+        <section className="grid h-16 w-full content-start justify-items-center">
+          <button
+            className="rounded-full bg-neutral-400 px-4 py-2.5 shadow-md dark:bg-neutral-600"
+            onClick={() => setIsModalOpen((prev) => !prev)}
+          >
+            都道府県を選択する
+          </button>
+        </section>
+      </main>
+      <Modal header="Prefectures">
+        <ul className="grid grid-cols-3 gap-4 md:grid-cols-5">
+          {data?.result.map(({ prefCode, prefName }) => (
+            <li key={prefCode} className="flex items-center gap-1.5">
+              <input
+                type="checkbox"
+                id={prefCode.toString()}
+                value={prefCode}
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setNewPref({
+                      code: prefCode,
+                      name: prefName,
+                    });
+                  } else {
+                    setPopulations((prev) =>
+                      prev.filter(({ pref }) => pref.prefCode !== prefCode)
+                    );
+                    setNewPref(null);
+                  }
+                }}
+              />
+              <label htmlFor={prefCode.toString()}>{prefName}</label>
+            </li>
+          ))}
+        </ul>
+      </Modal>
+    </>
   );
 }
