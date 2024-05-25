@@ -91,8 +91,8 @@ export default function Page() {
       </main>
       <Modal header="都道府県の選択">
         <ul className="chart-prefecture-list">
-          {data.result.map(({ prefCode, prefName }) => (
-            <li key={`chart-prefecture-${prefCode}`}>
+          {data.result.map(({ prefCode, prefName }, index) => (
+            <li key={`chart-prefecture-item-${index}`}>
               <Checkbox
                 id={`chart-prefecture-${prefCode}`}
                 onChange={(e) => {
