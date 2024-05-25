@@ -51,6 +51,10 @@ export function Chart({
           stroke: "currentColor",
           strokeOpacity: 0.2,
         },
+        "& .MuiChartsAxis-label tspan": {
+          fill: "currentColor",
+          fontSize: "0.75rem", // text-xs
+        },
         "& .MuiChartsAxis-tickLabel tspan": {
           fill: "currentColor",
         },
