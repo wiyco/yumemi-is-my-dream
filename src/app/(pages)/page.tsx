@@ -55,12 +55,12 @@ export default function Page() {
   return (
     <>
       <main className="grid h-full w-full content-around p-4">
-        {populationChartData.length === 0 ? (
-          <section className="chart-population-section grid place-content-center">
-            <p className="text-center">都道府県を選択してください</p>
-          </section>
-        ) : (
-          <section className="chart-population-section">
+        <section className="chart-population-section">
+          {populationChartData.length === 0 ? (
+            <div className=" grid h-full w-full place-content-center">
+              <p className="text-center">都道府県を選択してください</p>
+            </div>
+          ) : (
             <Chart
               xAxis={[
                 {
@@ -77,8 +77,8 @@ export default function Page() {
               }))}
               margin={{ left: 72, right: 8, top: 114, bottom: 48 }}
             />
-          </section>
-        )}
+          )}
+        </section>
         <section className="grid h-16 w-full content-start justify-items-center">
           <button
             className="rounded-full bg-neutral-400 px-4 py-2.5 shadow-md dark:bg-neutral-600"
