@@ -54,7 +54,7 @@ export default function Page() {
 
   return (
     <>
-      <main className="grid h-full w-full content-around p-4">
+      <main className="chart-page-main">
         <section className="chart-population-section">
           {populationChartData.length === 0 ? (
             <div className=" grid h-full w-full place-content-center">
@@ -79,7 +79,7 @@ export default function Page() {
             />
           )}
         </section>
-        <section className="grid h-full w-full place-content-center">
+        <section className="chart-prefecture-section">
           <button
             className="rounded-full bg-neutral-400 px-4 py-2.5 shadow-md dark:bg-neutral-600"
             onClick={() => setIsModalOpen((prev) => !prev)}
@@ -89,9 +89,9 @@ export default function Page() {
         </section>
       </main>
       <Modal header="都道府県の選択">
-        <ul className="grid grid-cols-3 gap-4 md:grid-cols-5">
+        <ul className="chart-prefecture-list">
           {data?.result.map(({ prefCode, prefName }) => (
-            <li key={prefCode} className="flex items-center gap-1.5">
+            <li key={prefCode}>
               <input
                 type="checkbox"
                 id={prefCode.toString()}
