@@ -8,6 +8,7 @@ type ChartProps = {
   yAxis?: React.ComponentProps<typeof LineChart>["yAxis"];
   series: React.ComponentProps<typeof LineChart>["series"];
   height?: React.ComponentProps<typeof LineChart>["height"];
+  margin?: React.ComponentProps<typeof LineChart>["margin"];
 };
 
 export function Chart({
@@ -15,7 +16,8 @@ export function Chart({
   xAxis,
   yAxis,
   series,
-  height = 400,
+  height,
+  margin,
 }: ChartProps) {
   return (
     <LineChart
@@ -24,8 +26,15 @@ export function Chart({
       yAxis={yAxis}
       series={series}
       height={height}
-      margin={{ left: 72, right: 32, top: 48, bottom: 32 }}
+      margin={margin}
       grid={{ vertical: true, horizontal: true }}
+      slotProps={{
+        legend: {
+          itemMarkWidth: 16,
+          itemMarkHeight: 16,
+          itemGap: 8,
+        },
+      }}
       sx={{
         "& .css-1f57y8b": {
           fill: "currentColor",
@@ -42,11 +51,19 @@ export function Chart({
           stroke: "currentColor",
           strokeOpacity: 0.2,
         },
+        "& .MuiChartsAxis-label tspan": {
+          fill: "currentColor",
+          fontSize: "0.75rem", // text-xs
+        },
         "& .MuiChartsAxis-tickLabel tspan": {
           fill: "currentColor",
         },
         "& .MuiChartsLegend-series tspan": {
           fill: "currentColor",
+          fontSize: "0.875rem", // text-sm
+        },
+        "& .MuiChartsLegend-mark": {
+          rx: 9999,
         },
       }}
     />

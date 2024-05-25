@@ -1,5 +1,7 @@
 "use client";
 
+import "./page.scss";
+
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -54,24 +56,28 @@ export default function Page() {
     <>
       <main className="grid h-dvh w-full content-around p-6">
         {populationChartData.length === 0 ? (
-          <div className="grid h-[400px] place-content-center">
+          <section className="chart-population-section grid place-content-center">
             <p className="text-center">都道府県を選択してください</p>
-          </div>
+          </section>
         ) : (
-          <Chart
-            xAxis={[
-              {
-                data: populationChartData[0]?.years,
-                valueFormatter: (value) => value.toString(),
-                min: Math.min(...(populationChartData[0]?.years ?? [])),
-                max: Math.max(...(populationChartData[0]?.years ?? [])),
-              },
-            ]}
-            series={populationChartData.map(({ pref, populations }) => ({
-              data: populations,
-              label: pref.prefName,
-            }))}
-          />
+          <section className="chart-population-section">
+            <Chart
+              xAxis={[
+                {
+                  data: populationChartData[0]?.years,
+                  valueFormatter: (value) => value.toString(),
+                  min: Math.min(...(populationChartData[0]?.years ?? [])),
+                  max: Math.max(...(populationChartData[0]?.years ?? [])),
+                  label: "年度",
+                },
+              ]}
+              series={populationChartData.map(({ pref, populations }) => ({
+                data: populations,
+                label: pref.prefName,
+              }))}
+              margin={{ left: 72, right: 8, top: 114, bottom: 48 }}
+            />
+          </section>
         )}
         <section className="grid h-16 w-full content-start justify-items-center">
           <button
