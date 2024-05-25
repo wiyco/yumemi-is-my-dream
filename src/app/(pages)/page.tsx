@@ -79,7 +79,7 @@ export default function Page() {
             />
           )}
         </section>
-        <section className="grid h-16 w-full content-start justify-items-center">
+        <section className="grid h-full w-full place-content-center">
           <button
             className="rounded-full bg-neutral-400 px-4 py-2.5 shadow-md dark:bg-neutral-600"
             onClick={() => setIsModalOpen((prev) => !prev)}
