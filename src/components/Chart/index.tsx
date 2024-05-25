@@ -28,6 +28,13 @@ export function Chart({
       height={height}
       margin={margin}
       grid={{ vertical: true, horizontal: true }}
+      slotProps={{
+        legend: {
+          itemMarkWidth: 16,
+          itemMarkHeight: 16,
+          itemGap: 8,
+        },
+      }}
       sx={{
         "& .css-1f57y8b": {
           fill: "currentColor",
@@ -49,6 +56,10 @@ export function Chart({
         },
         "& .MuiChartsLegend-series tspan": {
           fill: "currentColor",
+          fontSize: "0.875rem", // text-sm
+        },
+        "& .MuiChartsLegend-mark": {
+          rx: 9999,
         },
       }}
     />
