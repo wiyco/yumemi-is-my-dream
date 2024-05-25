@@ -1,6 +1,7 @@
 import "@styles/globals.scss";
 
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { Header } from "@/components/Header";
 
@@ -27,8 +28,16 @@ export default function RootLayout({
             disableTransitionOnChange: true,
           }}
         >
-          <Header className="grid place-content-center">
-            Yumemi Front Exam
+          <Header className="px-6">
+            <div className="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between">
+              <h1 className="font-semibold">Challenge from YUMEMI Inc.</h1>
+              <Image
+                src="/logo/logo-color.png"
+                alt="logo"
+                width={36}
+                height={36}
+              />
+            </div>
           </Header>
           {children}
         </Provider>
