@@ -74,7 +74,7 @@ export default function Page() {
                 data: populations,
                 label: pref.prefName,
               }))}
-              margin={{ left: 72, right: 32, top: 48, bottom: 32 }}
+              margin={{ left: 72, right: 8, top: 114, bottom: 48 }}
             />
           </section>
         )}
