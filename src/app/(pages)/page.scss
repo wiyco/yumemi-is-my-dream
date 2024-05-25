@@ -30,8 +30,4 @@
   @include breakpoints.media("md") {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-
-  & > li {
-    @apply flex items-center gap-1.5;
-  }
 }
