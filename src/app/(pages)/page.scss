@@ -1,4 +1,37 @@
+@use "@styles/breakpoints" as breakpoints;
+
+.chart-page-main {
+  @apply grid
+    h-full min-h-full w-full
+    content-between gap-8
+    p-4;
+}
+
 .chart-population-section {
   width: 100%;
   height: calc(100dvh * 0.75);
+}
+
+.chart-prefecture-section {
+  @apply grid w-full place-content-center;
+}
+
+.chart-prefecture-list {
+  /* I can use both Tailwind CSS and raw SASS, but I prefer the former */
+
+  /* Tailwind CSS */
+  // @apply grid grid-cols-3 gap-4 md:grid-cols-5;
+
+  /* Raw SASS */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+
+  @include breakpoints.media("md") {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  & > li {
+    @apply flex items-center gap-1.5;
+  }
 }
