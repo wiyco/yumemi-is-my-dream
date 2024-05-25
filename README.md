@@ -16,6 +16,20 @@ First, you must install packages.
 npm i
 ```
 
+### Environment Variables
+
+Create a `.env.local` file in the project's root directory and copy the following:
+
+```bash
+RESAS_API_KEY=YourApiKey
+```
+
+#### RESAS
+
+RESAS is Japan's Regional Economy and Society Analyzing System.
+
+For more details, please refer to the [official page](https://resas.go.jp). The API documentation can be found [here](https://opendata.resas-portal.go.jp/docs/api/v1/index.html).
+
 ## Tech Stack
 
 | Environments | Languages | Frameworks | Libraries | Testing | CI/CD |
