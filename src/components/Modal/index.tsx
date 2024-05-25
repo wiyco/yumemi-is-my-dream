@@ -7,13 +7,15 @@ import { atom, useAtom } from "jotai";
 
 import { cn } from "@/utils/cn";
 
+const modalAtom = atom(false);
+
 /**
- * Jotai atom for modal state.
+ * Modal (Dialog) state hook.
  * ```tsx
- * const [isModalOpen, setIsModalOpen] = useAtom(modalAtom);
+ * const [isModalOpen, setIsModalOpen] = useModal();
  * ```
  */
-export const modalAtom = atom(false);
+export const useModal = () => useAtom(modalAtom);
 
 /**
  * Modal (Dialog) component.
@@ -33,7 +35,7 @@ export function Modal({
   children?: React.ReactNode;
   header?: React.ReactNode;
 }) {
-  const [isModalOpen, setIsModalOpen] = useAtom(modalAtom);
+  const [isModalOpen, setIsModalOpen] = useModal();
 
   return (
     <div
