@@ -54,13 +54,13 @@ export default function Page() {
 
   return (
     <>
-      <main className="grid h-dvh w-full content-around p-6">
-        {populationChartData.length === 0 ? (
-          <section className="chart-population-section grid place-content-center">
-            <p className="text-center">都道府県を選択してください</p>
-          </section>
-        ) : (
-          <section className="chart-population-section">
+      <main className="chart-page-main">
+        <section className="chart-population-section">
+          {populationChartData.length === 0 ? (
+            <div className=" grid h-full w-full place-content-center">
+              <p className="text-center">都道府県を選択してください</p>
+            </div>
+          ) : (
             <Chart
               xAxis={[
                 {
@@ -75,11 +75,11 @@ export default function Page() {
                 data: populations,
                 label: pref.prefName,
               }))}
-              margin={{ left: 72, right: 8, top: 114, bottom: 48 }}
+              margin={{ left: 72, right: 16, top: 114, bottom: 48 }}
             />
-          </section>
-        )}
-        <section className="grid h-16 w-full content-start justify-items-center">
+          )}
+        </section>
+        <section className="chart-prefecture-section">
           <button
             className="rounded-full bg-neutral-400 px-4 py-2.5 shadow-md dark:bg-neutral-600"
             onClick={() => setIsModalOpen((prev) => !prev)}
@@ -89,9 +89,9 @@ export default function Page() {
         </section>
       </main>
       <Modal header="都道府県の選択">
-        <ul className="grid grid-cols-3 gap-4 md:grid-cols-5">
+        <ul className="chart-prefecture-list">
           {data?.result.map(({ prefCode, prefName }) => (
-            <li key={prefCode} className="flex items-center gap-1.5">
+            <li key={prefCode}>
               <input
                 type="checkbox"
                 id={prefCode.toString()}
