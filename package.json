@@ -1,6 +1,10 @@
 {
-  "name": "next-template",
-  "description": "Boilerplate of Next.js project with Lint, TypeScript, SASS, Tailwind, NextUI, Framer Motion, React Hook Form, Zod, SWR, Vitest and more.",
+  "name": "yumemi-is-my-dream",
+  "description": "Yumemi front exam created by @wiyco",
+  "author": {
+    "name": "wiyco",
+    "email": "me@mail.wiyco.dev"
+  },
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -21,22 +25,17 @@
   "dependencies": {
     "@emotion/react": "^11.11",
     "@emotion/styled": "^11.11",
-    "@hookform/resolvers": "^3",
     "@mui/material": "^5.15",
     "@mui/x-charts": "^7.5",
-    "@nextui-org/react": "^2.3",
     "clsx": "^2",
-    "framer-motion": "^11.2",
     "iconoir-react": "^7.7",
     "jotai": "^2.8",
     "next": "^14.2",
     "next-themes": "^0",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7",
     "swr": "^2",
-    "tailwind-merge": "^2",
-    "zod": "^3"
+    "tailwind-merge": "^2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6",
