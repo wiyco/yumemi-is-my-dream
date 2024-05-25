@@ -14,7 +14,7 @@ import type { ReasasPrefecturesResponse } from "@/types/resas";
 import {
   getPopulationChartData,
   type PopulationChartData,
-} from "@/utils/fetcher";
+} from "@/utils/fetcher/resas";
 
 export default function Page() {
   const [, setIsModalOpen] = useAtom(modalAtom);
