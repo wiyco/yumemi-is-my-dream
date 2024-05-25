@@ -8,8 +8,8 @@ import { Header } from "@/components/Header";
 import { Provider } from "./provider";
 
 export const metadata: Metadata = {
-  title: "Yumemi is my dream",
-  description: "Yumemi front exam created by @wiyco",
+  title: "YUMEMI is My Dream",
+  description: "Challenge from YUMEMI Inc. created by @wiyco",
 };
 
 export default function RootLayout({
