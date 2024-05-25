@@ -43,7 +43,7 @@ For more details, please refer to the [official page](https://resas.go.jp). The 
 [prettier-logo]: https://img.shields.io/badge/-Prettier-F7B93E.svg?logo=prettier&style=flat&logoColor=262626
 [node-logo]: https://img.shields.io/badge/-Node.js-5FA04E.svg?logo=nodedotjs&style=flat&logoColor=ffffff
 [vercel-logo]: https://img.shields.io/badge/-Vercel-000000.svg?logo=vercel&style=flat&logoColor=ffffff
-[githubactions-logo]: https://img.shields.io/badge/-Github%20Actions-2088FF.svg?logo=githubactions&style=flat&logoColor=ffffff
+[githubactions-logo]: https://img.shields.io/badge/-GitHub%20Actions-2088FF.svg?logo=githubactions&style=flat&logoColor=ffffff
 [react-logo]: https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=flat&logoColor=262626
 [next-logo]: https://img.shields.io/badge/-Next.js-000000.svg?logo=nextdotjs&style=flat&logoColor=ffffff
 [vitest-logo]: https://img.shields.io/badge/-Vitest-6E9F18.svg?logo=vitest&style=flat&logoColor=ffffff
