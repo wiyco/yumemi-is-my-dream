@@ -3,8 +3,8 @@
 .chart-page-main {
   @apply grid
     h-full min-h-full w-full
-    content-between gap-8
-    p-4;
+    content-around
+    p-4 pb-10;
 }
 
 .chart-population-section {
