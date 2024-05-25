@@ -71,6 +71,7 @@ export default function Page() {
               data: populations,
               label: pref.prefName,
             }))}
+            margin={{ left: 72, right: 32, top: 48, bottom: 32 }}
           />
         )}
         <section className="grid h-16 w-full content-start justify-items-center">
