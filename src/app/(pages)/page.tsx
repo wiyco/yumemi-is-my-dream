@@ -2,14 +2,13 @@
 
 import "./page.scss";
 
-import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 import { Chart } from "@/components/Chart";
 import { Checkbox } from "@/components/Checkbox";
 import { FullScreen } from "@/components/FullScreen";
-import { Modal, modalAtom } from "@/components/Modal";
+import { Modal, useModal } from "@/components/Modal";
 import { fetcher } from "@/lib/swr";
 import type { ReasasPrefecturesResponse } from "@/types/resas";
 import {
@@ -18,7 +17,7 @@ import {
 } from "@/utils/fetcher/resas";
 
 export default function Page() {
-  const [, setIsModalOpen] = useAtom(modalAtom);
+  const [, setIsModalOpen] = useModal();
   const [newPref, setNewPref] = useState<PopulationChartData["pref"] | null>(
     null
   );
