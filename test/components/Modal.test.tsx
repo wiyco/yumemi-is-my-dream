@@ -1,8 +1,7 @@
 import "@testing-library/jest-dom";
 
-import { Modal, modalAtom } from "@components/Modal";
+import { Modal, useModal } from "@components/Modal";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { useAtom } from "jotai";
 import { beforeEach, describe, expect, test } from "vitest";
 
 /** Test component for Modal */
@@ -13,7 +12,7 @@ const ModalTest = ({
   children?: React.ReactNode;
   header?: React.ReactNode;
 }) => {
-  const [, setIsModalOpen] = useAtom(modalAtom);
+  const [, setIsModalOpen] = useModal();
   return (
     <>
       <Modal header={header}>{children}</Modal>
