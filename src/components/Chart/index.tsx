@@ -10,13 +10,7 @@ type ChartProps = {
   height?: React.ComponentProps<typeof LineChart>["height"];
 };
 
-export function Chart({
-  title,
-  xAxis,
-  yAxis,
-  series,
-  height = 400,
-}: ChartProps) {
+export function Chart({ title, xAxis, yAxis, series, height }: ChartProps) {
   return (
     <LineChart
       title={title}
