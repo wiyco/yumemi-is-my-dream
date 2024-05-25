@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 import { Chart } from "@/components/Chart";
+import { Checkbox } from "@/components/Checkbox";
 import { FullScreen } from "@/components/FullScreen";
 import { Modal, modalAtom } from "@/components/Modal";
 import { fetcher } from "@/lib/swr";
@@ -91,11 +92,9 @@ export default function Page() {
       <Modal header="都道府県の選択">
         <ul className="chart-prefecture-list">
           {data.result.map(({ prefCode, prefName }) => (
-            <li key={prefCode}>
-              <input
-                type="checkbox"
-                id={prefCode.toString()}
-                value={prefCode}
+            <li key={`chart-prefecture-${prefCode}`}>
+              <Checkbox
+                id={`chart-prefecture-${prefCode}`}
                 onChange={(e) => {
                   if (e.target.checked) {
                     setNewPref({
@@ -109,8 +108,9 @@ export default function Page() {
                     setNewPref(null);
                   }
                 }}
-              />
-              <label htmlFor={prefCode.toString()}>{prefName}</label>
+              >
+                {prefName}
+              </Checkbox>
             </li>
           ))}
         </ul>
