@@ -54,7 +54,7 @@ export default function Page() {
 
   return (
     <>
-      <main className="grid h-dvh w-full content-around p-6">
+      <main className="grid h-full w-full content-around p-4">
         {populationChartData.length === 0 ? (
           <section className="chart-population-section grid place-content-center">
             <p className="text-center">都道府県を選択してください</p>
