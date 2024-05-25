@@ -32,6 +32,8 @@ For more details, please refer to the [official page](https://resas.go.jp). The 
 
 ## Tech Stack
 
+I wanted to use SafeParse with [Zod](https://zod.dev), but for better readability (easier to review), I aimed for simpler code.
+
 | Environments | Languages | Frameworks | Libraries | Testing | CI/CD |
 | :---         | :---      | :---       | :---      | :---    | :---  |
 | ![node-logo]<br>![vercel-logo]<br>![eslint-logo]<br>![stylelint-logo]<br>![prettier-logo] | ![ts-logo]<br>![sass-logo] | ![react-logo]<br>![next-logo]<br>![tailwind-logo] | ![swr-logo] | ![vitest-logo] | ![githubactions-logo] |
