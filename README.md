@@ -18,7 +18,7 @@ npm i
 
 ### Environment Variables
 
-Create a `.env.local` file in the project's root directory and copy the following:
+Create a `.env.local` file in the project's root directory and define the following variables:
 
 ```bash
 RESAS_API_KEY=YourApiKey
