@@ -68,6 +68,7 @@ export default function Page() {
                   valueFormatter: (value) => value.toString(),
                   min: Math.min(...(populationChartData[0]?.years ?? [])),
                   max: Math.max(...(populationChartData[0]?.years ?? [])),
+                  label: "年度",
                 },
               ]}
               series={populationChartData.map(({ pref, populations }) => ({
