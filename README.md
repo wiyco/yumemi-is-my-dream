@@ -1,4 +1,4 @@
-# Yumemi is My Dream
+# YUMEMI is My Dream
 
 This project was created by `npx create-next-app@latest` command.
 
