@@ -45,7 +45,7 @@ export default function Page() {
         <p>Loading...</p>
       </FullScreen>
     );
-  if (error)
+  if (error || !data)
     return (
       <FullScreen>
         <p>Error!</p>
@@ -90,7 +90,7 @@ export default function Page() {
       </main>
       <Modal header="都道府県の選択">
         <ul className="chart-prefecture-list">
-          {data?.result.map(({ prefCode, prefName }) => (
+          {data.result.map(({ prefCode, prefName }) => (
             <li key={prefCode}>
               <input
                 type="checkbox"
