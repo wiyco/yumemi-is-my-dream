@@ -20,27 +20,29 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <Provider
-          nextThemeProviderProps={{
-            attribute: "class",
-            defaultTheme: "system",
-            enableSystem: true,
-            disableTransitionOnChange: true,
-          }}
-        >
-          <Header className="px-6">
-            <div className="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between">
-              <h1 className="font-semibold">Challenge from YUMEMI Inc.</h1>
-              <Image
-                src="/logo/logo-color.png"
-                alt="logo"
-                width={36}
-                height={36}
-              />
-            </div>
-          </Header>
-          {children}
-        </Provider>
+        <div className="yumemi-is-my-dream-root">
+          <Provider
+            nextThemeProviderProps={{
+              attribute: "class",
+              defaultTheme: "system",
+              enableSystem: true,
+              disableTransitionOnChange: true,
+            }}
+          >
+            <Header className="px-6">
+              <div className="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between">
+                <h1 className="font-semibold">Challenge from YUMEMI Inc.</h1>
+                <Image
+                  src="/logo/logo-color.png"
+                  alt="logo"
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </Header>
+            {children}
+          </Provider>
+        </div>
       </body>
     </html>
   );
