@@ -1,9 +1,11 @@
 import "@styles/globals.scss";
 
 import type { Metadata } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import Image from "next/image";
 
 import { Header } from "@/components/Header";
+import { cn } from "@/utils/cn";
 
 import { Provider } from "./provider";
 
@@ -11,6 +13,8 @@ export const metadata: Metadata = {
   title: "YUMEMI is My Dream",
   description: "Challenge from YUMEMI Inc. created by @wiyco",
 };
+
+const notoSansJp = Noto_Sans_JP({ subsets: ["latin"], display: "swap" });
 
 export default function RootLayout({
   children,
@@ -20,7 +24,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div className="yumemi-is-my-dream-root">
+        <div className={cn("yumemi-is-my-dream-root", notoSansJp.className)}>
           <Provider
             nextThemeProviderProps={{
               attribute: "class",
