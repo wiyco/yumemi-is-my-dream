@@ -1,0 +1,25 @@
+@use "@styles/animations" as animations;
+
+.accordion-root {
+  @apply grid
+    w-full
+    gap-2.5;
+}
+
+.accordion-header {
+  @apply flex
+    items-center justify-between
+    p-2;
+
+  cursor: pointer;
+
+  & > .accordion-header-chevron {
+    transition: transform 0.3s animations.$ease-in-out-quart;
+  }
+}
+
+.accordion-body {
+  overflow: hidden;
+  transition: height 0.3s animations.$ease-in-out-quart;
+  transform-origin: top;
+}
