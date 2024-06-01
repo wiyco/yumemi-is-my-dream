@@ -1,0 +1,11 @@
+@use "@styles/safeareas" as safeareas;
+
+.sidebar-root {
+  @apply border-r
+    border-r-neutral-800/20
+    dark:border-r-neutral-200/20;
+
+  min-height: 100%;
+  max-height: calc(100dvh - safeareas.$header-height);
+  overflow-y: auto;
+}
