@@ -1,3 +1,7 @@
 .checkbox-root {
   @apply flex items-center gap-1.5;
+
+  & > * {
+    cursor: pointer;
+  }
 }
