@@ -24,7 +24,7 @@ export const useModal = () => useAtom(modalAtom);
  *  <p>Children content</p>
  * </Modal>
  * ```
- * Use `modalAtom` to open and close the modal.
+ * Use `useModal` to open and close the modal.
  * @param header - Header content
  * @param children - Children content
  */
