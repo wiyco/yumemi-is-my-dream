@@ -1,7 +1,12 @@
+@use "@styles/safeareas" as safeareas;
+
 .header-root {
   @apply sticky inset-x-0 top-0 z-40
-    min-h-14 w-full
+    w-full
     bg-neutral-200/40
     shadow backdrop-blur-md
     dark:bg-neutral-800/40;
+
+  min-height: safeareas.$header-height;
+  max-height: safeareas.$header-height;
 }
