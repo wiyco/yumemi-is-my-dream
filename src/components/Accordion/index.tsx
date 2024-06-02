@@ -2,7 +2,6 @@ import "./index.scss";
 
 import { NavArrowDown } from "iconoir-react";
 import { atom, useAtom } from "jotai";
-import { useState } from "react";
 
 import { cn } from "@/utils/cn";
 
@@ -36,7 +35,7 @@ export function Accordion({
   header?: React.ReactNode;
   showIcon?: boolean;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useAccordion();
 
   return (
     <div className="accordion-root">

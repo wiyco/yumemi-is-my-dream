@@ -33,6 +33,10 @@ export function Chart({
           itemMarkWidth: 16,
           itemMarkHeight: 16,
           itemGap: 8,
+          position: {
+            horizontal: "middle",
+            vertical: "bottom",
+          },
         },
       }}
       sx={{
