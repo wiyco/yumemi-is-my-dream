@@ -8,6 +8,7 @@ import useSWR from "swr";
 import { Accordion } from "@/components/Accordion";
 import { Checkbox } from "@/components/Checkbox";
 import { LineChart } from "@/components/LineChart";
+import { Select } from "@/components/Select";
 import { Sidebar } from "@/components/Sidebar";
 import { fetcher } from "@/lib/swr";
 import type { ReasasPrefecturesResponse } from "@/types/resas";
@@ -17,21 +18,30 @@ import {
 } from "@/utils/fetcher/resas";
 
 export default function Page() {
+  const [populationType, setPopulationType] =
+    useState<PopulationChartData["type"]>("総人口");
   const [newPref, setNewPref] = useState<PopulationChartData["pref"] | null>(
     null
   );
   const [populationChartData, setPopulationChartData] = useState<
     PopulationChartData[]
   >([]);
+  /** @note checkbox checked status of each pref */
+  const [checkedPrefs, setCheckedPrefs] = useState<{ [key: number]: boolean }>(
+    {}
+  );
 
   useEffect(() => {
     if (newPref?.prefCode) {
-      getPopulationChartData(newPref).then((data) => {
-        if (!data) return;
-        setPopulationChartData((prev) => [...prev, data]);
-      });
+      getPopulationChartData({ type: populationType, pref: newPref }).then(
+        (data) => {
+          if (!data) return;
+          console.log(data);
+          setPopulationChartData((prev) => [...prev, data]);
+        }
+      );
     }
-  }, [newPref]);
+  }, [newPref, populationType]);
 
   const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
     "/api/v1/prefectures",
@@ -42,6 +52,21 @@ export default function Page() {
     <>
       <main className="chart-page-main">
         <Sidebar className="chart-sidebar-root">
+          <Select
+            id="population-data-type"
+            options={[
+              { label: "総人口", value: "総人口" },
+              { label: "年少人口", value: "年少人口" },
+              { label: "生産年齢人口", value: "生産年齢人口" },
+              { label: "老年人口", value: "老年人口" },
+            ]}
+            onChange={(e) => {
+              setNewPref(null);
+              setCheckedPrefs({});
+              setPopulationChartData([]);
+              setPopulationType(e.target.value as PopulationChartData["type"]);
+            }}
+          />
           <Accordion header={<h2>都道府県を選択する</h2>}>
             <section className="grid justify-items-center p-1">
               {isLoading || !data ? (
@@ -53,10 +78,15 @@ export default function Page() {
               ) : (
                 <ul className="chart-prefecture-list text-sm">
                   {data.result.map(({ prefCode, prefName }, index) => (
-                    <li key={`chart-prefecture-item-${index}`}>
+                    <li key={index}>
                       <Checkbox
                         id={`chart-prefecture-${prefCode}`}
+                        checked={checkedPrefs[prefCode] || false}
                         onChange={(e) => {
+                          setCheckedPrefs((prev) => ({
+                            ...prev,
+                            [prefCode]: e.target.checked,
+                          }));
                           if (e.target.checked) {
                             setNewPref({
                               prefCode: prefCode,
@@ -88,7 +118,7 @@ export default function Page() {
             </div>
           ) : (
             <LineChart
-              title="総人口推移"
+              title={populationChartData[0]?.type}
               data={{
                 labels: populationChartData[0]?.years,
                 datasets: populationChartData.map(({ pref, populations }) => ({
