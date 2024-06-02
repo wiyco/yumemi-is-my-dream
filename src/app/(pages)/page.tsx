@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 import { Accordion } from "@/components/Accordion";
-import { Chart } from "@/components/Chart";
 import { Checkbox } from "@/components/Checkbox";
+import { LineChart } from "@/components/LineChart";
 import { Sidebar } from "@/components/Sidebar";
 import { fetcher } from "@/lib/swr";
 import type { ReasasPrefecturesResponse } from "@/types/resas";
@@ -87,21 +87,15 @@ export default function Page() {
               <p className="text-center">都道府県を選択してください</p>
             </div>
           ) : (
-            <Chart
-              xAxis={[
-                {
-                  data: populationChartData[0]?.years,
-                  valueFormatter: (value) => value.toString(),
-                  min: Math.min(...(populationChartData[0]?.years ?? [])),
-                  max: Math.max(...(populationChartData[0]?.years ?? [])),
-                  label: "年度",
-                },
-              ]}
-              series={populationChartData.map(({ pref, populations }) => ({
-                data: populations,
-                label: pref.prefName,
-              }))}
-              margin={{ left: 72, right: 16, top: 16, bottom: 128 }}
+            <LineChart
+              title="総人口推移"
+              data={{
+                labels: populationChartData[0]?.years,
+                datasets: populationChartData.map(({ pref, populations }) => ({
+                  label: pref.prefName,
+                  data: populations,
+                })),
+              }}
             />
           )}
         </section>
