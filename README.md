@@ -58,7 +58,7 @@ I wanted to use SafeParse with [Zod](https://zod.dev), but for better readabilit
 2. [next-themes](#2-next-themes)
 3. [swr](#3-swr)
 4. [vitest](#4-vitest)
-5. [@mui/x-charts](#5-muix-charts)
+5. [chart.js & react-chartjs-2](#5-chartjs--react-chartjs-2)
 
 ### 1. clsx & tailwind-merge
 
@@ -86,13 +86,12 @@ This package is used for testing (such as unit tests).
 >
 > To perform UI testing, you need to configure the [@testing-library/jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) package and set up [Vitest config](https://github.com/wiyco/yumemi-is-my-dream/blob/284412168517d30dbf626fd694ff769159d15069/vitest.config.mts#L16).
 
-### 5. [@mui/x-charts](https://mui.com/x/react-charts)
+### 5. chart.js & react-chartjs-2
 
-A component for drawing charts. Good design and usability.
+A component for drawing charts. Good design and expandability.
 
-> [!IMPORTANT]
->
-> [@mui/material, @emotion/react, and @emotion/styled](https://mui.com/x/react-charts/getting-started) are required.
+- [chart.js](https://www.chartjs.org/docs/latest)
+- [react-chartjs-2](https://react-chartjs-2.js.org)
 
 ---
 
