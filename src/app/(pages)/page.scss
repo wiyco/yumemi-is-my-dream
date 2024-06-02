@@ -3,6 +3,7 @@
 
 .chart-page-main {
   display: grid;
+  max-height: calc(100dvh - safeareas.$header-height);
 
   @include breakpoints.media("md") {
     display: flex;
