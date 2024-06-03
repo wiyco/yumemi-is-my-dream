@@ -54,6 +54,7 @@ export default function Page() {
         <Sidebar className="chart-sidebar-root">
           <Select
             id="population-data-type"
+            label="構成："
             options={[
               { label: "総人口", value: "総人口" },
               { label: "年少人口", value: "年少人口" },
