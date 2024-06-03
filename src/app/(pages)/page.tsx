@@ -31,12 +31,11 @@ export default function Page() {
   >([]);
 
   useEffect(() => {
-    if (newPref?.prefCode) {
-      getPopulationChartData({ pref: newPref }).then((data) => {
-        if (!data) return;
-        setPopulationChartData((prev) => [...prev, data]);
-      });
-    }
+    if (!newPref?.prefCode) return;
+    getPopulationChartData({ pref: newPref }).then((data) => {
+      if (!data) return;
+      setPopulationChartData((prev) => [...prev, data]);
+    });
   }, [newPref, populationType]);
 
   const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
