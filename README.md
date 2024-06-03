@@ -52,6 +52,14 @@ I wanted to use SafeParse with [Zod](https://zod.dev), but for better readabilit
 [tailwind-logo]: https://img.shields.io/badge/-Tailwind%20CSS-06B6D4.svg?logo=tailwindcss&style=flat&logoColor=ffffff
 [swr-logo]: https://img.shields.io/badge/-SWR-000000.svg?logo=swr&style=flat&logoColor=ffffff
 
+## PageSpeed Insights
+
+| Mobile | Desktop |
+| :---:  | :---:   |
+| ![yumemi-mobile-score](https://github.com/wiyco/yumemi-is-my-dream/assets/72733890/bf7ec98d-fc6a-40c3-b3b7-73488a2930ac) | ![yumemi-desktop-score](https://github.com/wiyco/yumemi-is-my-dream/assets/72733890/cafc5393-2865-4501-8b73-7bfb3d82d572) |
+
+Report: https://pagespeed.web.dev/analysis/https-yumemi-is-my-dream-wiyco-dev/vxlak8ykpe
+
 ## Packages
 
 1. [clsx & tailwind-merge](#1-clsx--tailwind-merge)
