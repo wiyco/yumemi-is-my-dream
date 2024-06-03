@@ -34,7 +34,6 @@ export default function Page() {
     if (newPref?.prefCode) {
       getPopulationChartData({ pref: newPref }).then((data) => {
         if (!data) return;
-        console.log(data);
         setPopulationChartData((prev) => [...prev, data]);
       });
     }
