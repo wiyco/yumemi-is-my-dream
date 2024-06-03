@@ -111,9 +111,10 @@ export default function Page() {
             <LineChart
               title={populationType}
               data={{
-                labels: populationChartData[0].populations[0].data.map(
-                  (d) => d.year
-                ),
+                labels:
+                  populationChartData[0].populations
+                    .find((d) => d.label === populationType)
+                    ?.data.map((d) => d.year) ?? [],
                 datasets: populationChartData.map(({ pref, populations }) => ({
                   label: pref.prefName,
                   data:
