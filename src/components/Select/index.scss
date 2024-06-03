@@ -1,20 +1,16 @@
 .select-root {
-  @apply relative grid w-full;
-
-  &::before {
-    @apply absolute inset-y-0 right-0
-      grid place-content-center
-      px-2;
-
-    pointer-events: none;
-    content: "▼";
-  }
+  @apply flex w-full
+    items-center justify-start gap-2
+    text-nowrap;
 }
 
 .select-selector {
-  @apply overflow-hidden rounded-lg
-    px-2.5 py-1;
+  @apply w-full
+    overflow-hidden rounded-lg
+    bg-neutral-200
+    px-2.5 py-1
+    dark:bg-neutral-800;
 
-  appearance: none;
   cursor: pointer;
+  border-right: 0.125rem solid transparent;
 }
