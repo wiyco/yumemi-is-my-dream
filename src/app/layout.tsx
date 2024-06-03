@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html lang="ja">
       <body>
         <div className={cn("yumemi-is-my-dream-root", notoSansJp.className)}>
           <Provider
