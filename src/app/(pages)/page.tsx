@@ -11,7 +11,10 @@ import { LineChart } from "@/components/LineChart";
 import { Select } from "@/components/Select";
 import { Sidebar } from "@/components/Sidebar";
 import { fetcher } from "@/lib/swr";
-import type { ReasasPrefecturesResponse } from "@/types/resas";
+import type {
+  ReasasPopulationType,
+  ReasasPrefecturesResponse,
+} from "@/types/resas";
 import {
   getPopulationChartData,
   type PopulationChartData,
@@ -19,27 +22,21 @@ import {
 
 export default function Page() {
   const [populationType, setPopulationType] =
-    useState<PopulationChartData["type"]>("総人口");
+    useState<ReasasPopulationType>("総人口");
   const [newPref, setNewPref] = useState<PopulationChartData["pref"] | null>(
     null
   );
   const [populationChartData, setPopulationChartData] = useState<
     PopulationChartData[]
   >([]);
-  /** @note checkbox checked status of each pref */
-  const [checkedPrefs, setCheckedPrefs] = useState<{ [key: number]: boolean }>(
-    {}
-  );
 
   useEffect(() => {
     if (newPref?.prefCode) {
-      getPopulationChartData({ type: populationType, pref: newPref }).then(
-        (data) => {
-          if (!data) return;
-          console.log(data);
-          setPopulationChartData((prev) => [...prev, data]);
-        }
-      );
+      getPopulationChartData({ pref: newPref }).then((data) => {
+        if (!data) return;
+        console.log(data);
+        setPopulationChartData((prev) => [...prev, data]);
+      });
     }
   }, [newPref, populationType]);
 
@@ -63,9 +60,7 @@ export default function Page() {
             ]}
             onChange={(e) => {
               setNewPref(null);
-              setCheckedPrefs({});
-              setPopulationChartData([]);
-              setPopulationType(e.target.value as PopulationChartData["type"]);
+              setPopulationType(e.target.value as ReasasPopulationType);
             }}
           />
           <Accordion header={<h2>都道府県を選択する</h2>}>
@@ -82,12 +77,7 @@ export default function Page() {
                     <li key={index}>
                       <Checkbox
                         id={`chart-prefecture-${prefCode}`}
-                        checked={checkedPrefs[prefCode] || false}
                         onChange={(e) => {
-                          setCheckedPrefs((prev) => ({
-                            ...prev,
-                            [prefCode]: e.target.checked,
-                          }));
                           if (e.target.checked) {
                             setNewPref({
                               prefCode: prefCode,
@@ -119,12 +109,17 @@ export default function Page() {
             </div>
           ) : (
             <LineChart
-              title={populationChartData[0]?.type}
+              title={populationType}
               data={{
-                labels: populationChartData[0]?.years,
+                labels: populationChartData[0].populations[0].data.map(
+                  (d) => d.year
+                ),
                 datasets: populationChartData.map(({ pref, populations }) => ({
                   label: pref.prefName,
-                  data: populations,
+                  data:
+                    populations
+                      .find((d) => d.label === populationType)
+                      ?.data.map((d) => d.value) ?? [],
                 })),
               }}
             />
