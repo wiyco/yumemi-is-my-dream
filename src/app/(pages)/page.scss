@@ -13,13 +13,18 @@
 }
 
 .chart-sidebar-root {
-  @apply grid min-w-80 content-start gap-4
+  @apply grid content-start gap-4
     border-none
     p-3;
+
+  min-width: auto;
+  max-height: calc(50dvh - safeareas.$header-height) !important;
 
   @include breakpoints.media("md") {
     @apply border-r-neutral-800/20 dark:border-r-neutral-200/20;
 
+    min-width: 20rem; // min-w-80
+    max-height: calc(100dvh - safeareas.$header-height) !important;
     border-right: solid 1px;
   }
 }
