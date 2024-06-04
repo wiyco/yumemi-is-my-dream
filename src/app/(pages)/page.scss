@@ -3,6 +3,7 @@
 
 .chart-page-main {
   display: grid;
+  grid-template-rows: fit-content(100%) 1fr fit-content(100%);
   max-height: calc(100dvh - safeareas.$header-height);
 
   @include breakpoints.media("md") {
