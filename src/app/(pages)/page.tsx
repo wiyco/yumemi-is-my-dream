@@ -2,7 +2,7 @@
 
 import "./page.scss";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 
 import { Accordion } from "@/components/Accordion";
@@ -23,20 +23,9 @@ import {
 export default function Page() {
   const [populationType, setPopulationType] =
     useState<ReasasPopulationType>("総人口");
-  const [newPref, setNewPref] = useState<PopulationChartData["pref"] | null>(
-    null
-  );
   const [populationChartData, setPopulationChartData] = useState<
     PopulationChartData[]
   >([]);
-
-  useEffect(() => {
-    if (!newPref?.prefCode) return;
-    getPopulationChartData({ pref: newPref }).then((data) => {
-      if (!data) return;
-      setPopulationChartData((prev) => [...prev, data]);
-    });
-  }, [newPref, populationType]);
 
   const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
     "/api/v1/prefectures",
@@ -57,7 +46,6 @@ export default function Page() {
               { label: "老年人口", value: "老年人口" },
             ]}
             onChange={(e) => {
-              setNewPref(null);
               setPopulationType(e.target.value as ReasasPopulationType);
             }}
           />
@@ -75,19 +63,26 @@ export default function Page() {
                     <li key={index}>
                       <Checkbox
                         id={`chart-prefecture-${prefCode}`}
-                        onChange={(e) => {
+                        onChange={async (e) => {
                           if (e.target.checked) {
-                            setNewPref({
-                              prefCode: prefCode,
-                              prefName: prefName,
+                            const targetPref = {
+                              prefCode,
+                              prefName,
+                            };
+                            const targetData = await getPopulationChartData({
+                              pref: targetPref,
                             });
+                            if (!targetData) return;
+                            setPopulationChartData((prev) => [
+                              ...prev,
+                              targetData,
+                            ]);
                           } else {
                             setPopulationChartData((prev) =>
                               prev.filter(
                                 ({ pref }) => pref.prefCode !== prefCode
                               )
                             );
-                            setNewPref(null);
                           }
                         }}
                       >
