@@ -39,7 +39,8 @@ export default function Page() {
 
   const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
     "/api/v1/prefectures",
-    fetcher
+    fetcher,
+    { revalidateOnFocus: false }
   );
 
   return (
