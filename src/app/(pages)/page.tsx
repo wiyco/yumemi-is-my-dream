@@ -2,7 +2,8 @@
 
 import "./page.scss";
 
-import { useState } from "react";
+import { resasPopulationTypes } from "@constants/resas";
+import { useMemo, useState } from "react";
 import useSWR from "swr";
 
 import { Accordion } from "@/components/Accordion";
@@ -27,6 +28,15 @@ export default function Page() {
     PopulationChartData[]
   >([]);
 
+  const selectOptions = useMemo(
+    () =>
+      resasPopulationTypes.map((type) => ({
+        label: type,
+        value: type,
+      })),
+    []
+  );
+
   const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
     "/api/v1/prefectures",
     fetcher
@@ -39,12 +49,7 @@ export default function Page() {
           <Select
             id="population-data-type"
             label="構成："
-            options={[
-              { label: "総人口", value: "総人口" },
-              { label: "年少人口", value: "年少人口" },
-              { label: "生産年齢人口", value: "生産年齢人口" },
-              { label: "老年人口", value: "老年人口" },
-            ]}
+            options={selectOptions}
             onChange={(e) => {
               setPopulationType(e.target.value as ReasasPopulationType);
             }}
