@@ -56,9 +56,9 @@ I wanted to use SafeParse with [Zod](https://zod.dev), but for better readabilit
 
 | Mobile | Desktop |
 | :---:  | :---:   |
-| ![yumemi-mobile-score](https://github.com/wiyco/yumemi-is-my-dream/assets/72733890/bf7ec98d-fc6a-40c3-b3b7-73488a2930ac) | ![yumemi-desktop-score](https://github.com/wiyco/yumemi-is-my-dream/assets/72733890/cafc5393-2865-4501-8b73-7bfb3d82d572) |
+| ![yumemi-mobile-score](https://github.com/wiyco/yumemi-is-my-dream/assets/72733890/06f9e3a1-8504-4d32-9025-a077679a1309) | ![yumemi-desktop-score](https://github.com/wiyco/yumemi-is-my-dream/assets/72733890/46f36b84-6e93-4abf-8c45-f3f135859b3b)
 
-Report: https://pagespeed.web.dev/analysis/https-yumemi-is-my-dream-wiyco-dev/vxlak8ykpe
+Report: https://pagespeed.web.dev/analysis/https-yumemi-is-my-dream-wiyco-dev/trkqlahv47
 
 ## Packages
 
