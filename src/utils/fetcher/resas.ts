@@ -8,7 +8,7 @@ type PopulationChartData = {
   populations: ReasasPopulationCompositionPerYearResponse["result"]["data"];
 };
 
-async function getPopulationChartData({
+async function fetchPopulationData({
   pref,
 }: {
   pref: PopulationChartData["pref"];
@@ -38,4 +38,4 @@ async function getPopulationChartData({
   }
 }
 
-export { getPopulationChartData, type PopulationChartData };
+export { fetchPopulationData, type PopulationChartData };
