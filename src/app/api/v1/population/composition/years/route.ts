@@ -11,30 +11,39 @@ export async function GET(request: NextRequest) {
   /** @note if the pref code is invalid, return 404 */
   if (isNaN(pref) || pref < 1 || pref > 47) {
     return NextResponse.json(
-      { message: "Invalid pref code!", result: [] },
+      { message: "Invalid pref code", result: [] },
       { status: 404 }
     );
   }
-  /** @see {@link https://opendata.resas-portal.go.jp/docs/api/v1/population/composition/perYear.html} */
-  const data = (await fetch(
-    `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${pref}`,
-    {
-      headers: {
-        "X-API-KEY": process.env.RESAS_API_KEY!,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .catch(() => null)) as ReasasPopulationCompositionPerYearResponse | null;
 
-  if (!data) {
-    return NextResponse.json(
-      { message: "Error!", result: [] },
-      { status: 500 }
+  try {
+    /** @see {@link https://opendata.resas-portal.go.jp/docs/api/v1/population/composition/perYear.html} */
+    const res = await fetch(
+      `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${pref}`,
+      {
+        headers: {
+          "X-API-KEY": process.env.RESAS_API_KEY!,
+        },
+      }
     );
-  }
+    if (!res.ok)
+      return NextResponse.json(
+        { message: "Error", result: [] },
+        { status: 500 }
+      );
 
-  return NextResponse.json(data, {
-    status: 200,
-  });
+    const data: ReasasPopulationCompositionPerYearResponse = await res.json();
+    if (!data)
+      return NextResponse.json(
+        { message: "Error", result: [] },
+        { status: 500 }
+      );
+
+    return NextResponse.json(data, {
+      status: 200,
+    });
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json({ message: "Error", result: [] }, { status: 500 });
+  }
 }
