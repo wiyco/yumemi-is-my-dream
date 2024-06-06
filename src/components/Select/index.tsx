@@ -1,3 +1,5 @@
+"use client";
+
 import "./index.scss";
 
 import { cn } from "@/utils/cn";
