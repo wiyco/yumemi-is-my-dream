@@ -2,8 +2,6 @@
 
 import "./page.scss";
 
-import { resasPopulationTypes } from "@constants/resas";
-import { useMemo, useState } from "react";
 import useSWR from "swr";
 
 import { Accordion } from "@/components/Accordion";
@@ -12,30 +10,19 @@ import { LineChart } from "@/components/LineChart";
 import { Select } from "@/components/Select";
 import { Sidebar } from "@/components/Sidebar";
 import { fetcher } from "@/lib/swr";
-import type {
-  ReasasPopulationType,
-  ReasasPrefecturesResponse,
-} from "@/types/resas";
-import {
-  getPopulationChartData,
-  type PopulationChartData,
-} from "@/utils/fetcher/resas";
+import type { ReasasPrefecturesResponse } from "@/types/resas";
+
+import { usePopulationChart, usePopulationType } from "./hooks";
 
 export default function Page() {
-  const [populationType, setPopulationType] =
-    useState<ReasasPopulationType>("総人口");
-  const [populationChartData, setPopulationChartData] = useState<
-    PopulationChartData[]
-  >([]);
+  const {
+    populationType,
+    populationTypeOptions,
+    onChangeSelectPopulationType,
+  } = usePopulationType();
 
-  const selectOptions = useMemo(
-    () =>
-      resasPopulationTypes.map((type) => ({
-        label: type,
-        value: type,
-      })),
-    []
-  );
+  const { populationChartData, onCheckPref, onUncheckPref } =
+    usePopulationChart();
 
   const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
     "/api/v1/prefectures",
@@ -50,10 +37,8 @@ export default function Page() {
           <Select
             id="population-data-type"
             label="構成："
-            options={selectOptions}
-            onChange={(e) => {
-              setPopulationType(e.target.value as ReasasPopulationType);
-            }}
+            options={populationTypeOptions}
+            onChange={(e) => void onChangeSelectPopulationType(e)}
           />
           <Accordion header={<h2>都道府県を選択する</h2>}>
             <section className="grid justify-items-center p-1">
@@ -71,24 +56,15 @@ export default function Page() {
                         id={`chart-prefecture-${prefCode}`}
                         onChange={async (e) => {
                           if (e.target.checked) {
-                            const targetPref = {
+                            onCheckPref({
                               prefCode,
                               prefName,
-                            };
-                            const targetData = await getPopulationChartData({
-                              pref: targetPref,
                             });
-                            if (!targetData) return;
-                            setPopulationChartData((prev) => [
-                              ...prev,
-                              targetData,
-                            ]);
                           } else {
-                            setPopulationChartData((prev) =>
-                              prev.filter(
-                                ({ pref }) => pref.prefCode !== prefCode
-                              )
-                            );
+                            onUncheckPref({
+                              prefCode,
+                              prefName,
+                            });
                           }
                         }}
                       >
