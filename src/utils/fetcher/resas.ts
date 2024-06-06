@@ -13,31 +13,29 @@ async function getPopulationChartData({
 }: {
   pref: PopulationChartData["pref"];
 }): Promise<PopulationChartData | null> {
-  const res = (await fetch(
-    `/api/v1/population/composition/years?pref=${pref.prefCode}`
-  )
-    .then((res) => res.json())
-    .catch((e) => {
-      console.error(e);
-      return null;
-    })) as ReasasPopulationCompositionPerYearResponse | null;
+  try {
+    const res = await fetch(
+      `/api/v1/population/composition/years?pref=${pref.prefCode}`,
+      {
+        next: {
+          revalidate: 1440, // 24 hours
+        },
+      }
+    );
+    if (!res.ok) throw new Error("Failed to fetch data");
 
-  if (!res) {
-    console.error("Failed to fetch data");
-    return null;
+    const data: ReasasPopulationCompositionPerYearResponse = await res.json();
+    if (!data || data.result.data.length === 0)
+      throw new Error("No data found");
+
+    return {
+      pref: pref,
+      populations: data.result.data,
+    };
+  } catch (e) {
+    console.error(e);
+    throw new Error("Failed to fetch data");
   }
-
-  if (res.result.data.length === 0) {
-    console.error("No data found");
-    return null;
-  }
-
-  const populationChartData = {
-    pref: pref,
-    populations: res.result.data,
-  };
-
-  return populationChartData;
 }
 
 export { getPopulationChartData, type PopulationChartData };
