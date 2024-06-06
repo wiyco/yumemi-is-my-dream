@@ -1,7 +1,7 @@
 import { resasPopulationTypes } from "@constants/resas";
 import { useCallback, useMemo, useState } from "react";
 
-import type { ReasasPopulationType } from "@/types/resas";
+import type { ResasPopulationType } from "@/types/resas";
 
 /**
  * Custom hook for population type
@@ -16,7 +16,7 @@ import type { ReasasPopulationType } from "@/types/resas";
  */
 function usePopulationType() {
   const [populationType, setPopulationType] =
-    useState<ReasasPopulationType>("総人口");
+    useState<ResasPopulationType>("総人口");
 
   const populationTypeOptions = useMemo(
     () =>
@@ -29,7 +29,7 @@ function usePopulationType() {
 
   const onChangeSelectPopulationType = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setPopulationType(e.target.value as ReasasPopulationType);
+      setPopulationType(e.target.value as ResasPopulationType);
     },
     []
   );

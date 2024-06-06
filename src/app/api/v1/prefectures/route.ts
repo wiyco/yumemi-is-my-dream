@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import type { ReasasPrefecturesResponse } from "@/types/resas";
+import type { ResasPrefecturesResponse } from "@/types/resas";
 
 export async function GET() {
   try {
@@ -20,7 +20,7 @@ export async function GET() {
       );
     }
 
-    const data: ReasasPrefecturesResponse = await res.json();
+    const data: ResasPrefecturesResponse = await res.json();
     if (!data) {
       return NextResponse.json(
         { message: "Error", result: [] },

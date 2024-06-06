@@ -10,7 +10,7 @@ import { LineChart } from "@/components/LineChart";
 import { Select } from "@/components/Select";
 import { Sidebar } from "@/components/Sidebar";
 import { fetcher } from "@/lib/swr";
-import type { ReasasPrefecturesResponse } from "@/types/resas";
+import type { ResasPrefecturesResponse } from "@/types/resas";
 
 import { usePopulationChart, usePopulationType } from "./hooks";
 
@@ -24,7 +24,7 @@ export default function Page() {
   const { populationChartData, onCheckPref, onUncheckPref } =
     usePopulationChart();
 
-  const { data, error, isLoading } = useSWR<ReasasPrefecturesResponse>(
+  const { data, error, isLoading } = useSWR<ResasPrefecturesResponse>(
     "/api/v1/prefectures",
     fetcher,
     { revalidateOnFocus: false }

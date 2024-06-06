@@ -1,11 +1,11 @@
 import type {
-  ReasasPopulationCompositionPerYearResponse,
-  ReasasPrefecturesResponse,
+  ResasPopulationCompositionPerYearResponse,
+  ResasPrefecturesResponse,
 } from "@/types/resas";
 
 type PopulationChartData = {
-  pref: ReasasPrefecturesResponse["result"][0];
-  populations: ReasasPopulationCompositionPerYearResponse["result"]["data"];
+  pref: ResasPrefecturesResponse["result"][0];
+  populations: ResasPopulationCompositionPerYearResponse["result"]["data"];
 };
 
 async function fetchPopulationData({
@@ -24,7 +24,7 @@ async function fetchPopulationData({
     );
     if (!res.ok) throw new Error("Failed to fetch data");
 
-    const data: ReasasPopulationCompositionPerYearResponse = await res.json();
+    const data: ResasPopulationCompositionPerYearResponse = await res.json();
     if (!data || data.result.data.length === 0)
       throw new Error("No data found");
 

@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-import type { ReasasPopulationCompositionPerYearResponse } from "@/types/resas";
+import type { ResasPopulationCompositionPerYearResponse } from "@/types/resas";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
         { status: 500 }
       );
 
-    const data: ReasasPopulationCompositionPerYearResponse = await res.json();
+    const data: ResasPopulationCompositionPerYearResponse = await res.json();
     if (!data)
       return NextResponse.json(
         { message: "Error", result: [] },
