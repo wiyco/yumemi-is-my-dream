@@ -40,7 +40,7 @@ export default function Page() {
             options={populationTypeOptions}
             onChange={(e) => void onChangeSelectPopulationType(e)}
           />
-          <Accordion header={<h2>都道府県を選択する</h2>}>
+          <Accordion header={<h2>都道府県</h2>}>
             <section className="chart-accordion-root">
               {isLoading || !data ? (
                 !error ? (
