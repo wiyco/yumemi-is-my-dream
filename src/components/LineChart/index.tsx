@@ -35,7 +35,7 @@ export function LineChart(props: LineChartProps) {
         maintainAspectRatio: false,
         layout: {
           padding: {
-            bottom: 64,
+            bottom: 32,
           },
         },
         plugins: {
