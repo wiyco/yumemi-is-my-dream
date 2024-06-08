@@ -41,7 +41,7 @@ export default function Page() {
             onChange={(e) => void onChangeSelectPopulationType(e)}
           />
           <Accordion header={<h2>都道府県を選択する</h2>}>
-            <section className="grid justify-items-center p-1">
+            <section className="chart-accordion-root">
               {isLoading || !data ? (
                 !error ? (
                   <p>読み込み中...</p>

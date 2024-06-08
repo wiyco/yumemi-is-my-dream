@@ -19,14 +19,24 @@
     p-3;
 
   min-width: auto;
-  max-height: calc(50dvh - safeareas.$header-height) !important;
+  overflow-y: hidden !important;
 
   @include breakpoints.media("md") {
     @apply border-r-neutral-800/20 dark:border-r-neutral-200/20;
 
     min-width: 20rem; // min-w-80
-    max-height: calc(100dvh - safeareas.$header-height) !important;
     border-right: solid 1px;
+  }
+}
+
+.chart-accordion-root {
+  @apply grid p-1;
+
+  max-height: calc(50dvh - safeareas.$header-height);
+  overflow-y: auto;
+
+  @include breakpoints.media("md") {
+    max-height: none;
   }
 }
 
